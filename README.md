@@ -1208,7 +1208,8 @@ make
 make install
 
 ## 错误二：
-Unable to require openssl, install OpenSSL and rebuild Ruby (preferred) or use non-HTTPS sources (Gem::Exception)
+Unable to require openssl, install OpenSSL and rebuild Ruby (preferred) or use non-HTTPS sources (Gem::Exception)   
+## 解决方案
 yum -y install openssl openssl-devel
 
 cd /opt/app/ruby-2.6.5/ext/openssl/
@@ -1216,6 +1217,9 @@ ruby extconf.rb
 sed -i 's#\$(top_srcdir)#../..#g' Makefile
 make
 make install
+
+## 通过gem在ruby中安装redis软件包
+gem install redis
 ```
 （2）配置开启Redis  
 redis-server redis-8000.conf  
@@ -1226,8 +1230,10 @@ redis-server redis-8004.conf
 redis-server redis-8005.conf  
 
 一键开启：  
-./redis-trib.rb create --replicas 1 172.16.49.131:8000 172.16.49.131:8001 \
-172.16.49.131:8002 172.16.49.131:8003 172.16.49.131:8004 172.16.49.131:8005  
+```
+./redis-trib.rb create --replicas 1 172.16.49.131:8000 172.16.49.131:8001 172.16.49.131:8002 172.16.49.131:8003 172.16.49.131:8004 172.16.49.131:8005  
+```
+
 
 ```
 # 关闭原生安装启动的cluster：
